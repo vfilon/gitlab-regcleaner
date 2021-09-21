@@ -82,10 +82,13 @@ kube_image_base = set(kube_image_base)
 show_stat(kube_image_base, set(gitlab_image_base.keys()), kube_history)
 
 del_candidates = list()
-logging.info(f'Got {len(del_candidates)} candidates to delete:')
+del_candidates_tags = list()
 for tag in set(gitlab_image_base.keys()).difference(kube_image_base):
     del_candidates.append(gitlab_image_base[tag])
-    logging.info(f'{tag}')
+    del_candidates_tags.append(tag)
+
+logging.info(f'Got {len(del_candidates_tags)} candidates to delete:')
+logging.info('\n'.join(del_candidates_tags))
 
 if remove_unused_tags:
     logging.info(f'Deleting images')

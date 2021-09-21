@@ -27,3 +27,20 @@ Do you have a Kubernetes cluster and GitLab registry full of unused images? Dele
  * `REMOVE_UNUSED_TAGS=false` - false - inspect,  true - remove unused images.
  * `GITLAB_INCLUDE_TAGS` - Regexp mask for the tag included in the deletion
  * `GITLAB_EXCLUDE_TAGS` - Regexp mask for the tag excluded from deletion
+
+### .gitlab-ci.yml
+
+```
+cleanup:
+  image: vfilon/gitlab-regcleaner:latest
+  stage: cleanup
+  variables:
+    GIT_STRATEGY: none
+    REMOVE_UNUSED_TAGS: "true"
+  environment:
+    name: $ENV_NAME
+    url: $DEPLOY_URL
+    action: prepare
+  script:
+    - cleanup.sh
+```
