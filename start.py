@@ -48,7 +48,7 @@ timer = Timer()
 
 gitlab_api_v4_url = os.environ['CI_API_V4_URL']
 gitlab_project_id = int(os.environ['CI_PROJECT_ID'])
-gitlab_token = os.environ['GITLAB_TOKEN']
+gitlab_token = os.environ['GITLAB_REGCLEAN_TOKEN']
 gitlab_exclude_tags = os.getenv('GITLAB_EXCLUDE_TAGS', r'')  # ^\d+\.\d+\.\d+$
 gitlab_include_tags = os.getenv('GITLAB_INCLUDE_TAGS', r'')  # ^[a-f0-9]{8}$
 gitlab_remove_unused_tags = os.getenv("GITLAB_REMOVE_UNUSED_TAGS", 'False').lower() in ('true', '1', 't')

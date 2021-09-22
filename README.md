@@ -21,7 +21,7 @@ Do you have a Kubernetes cluster and GitLab registry full of unused images? Dele
  * `CI_API_V4_URL=https://gitlab.example.com/api/v4` - The GitLab API v4 root URL
  * `CI_PROJECT_ID=100` - The ID of the current project. This ID is unique across all projects on the GitLab instance
  * 
- * `GITLAB_TOKEN=asdasdasd` - GitLab token (api, read_registry, write_registry)
+ * `GITLAB_REGCLEAN_TOKEN=asdasdasd` - GitLab token (api, read_registry, write_registry)
  * `GITLAB_INCLUDE_TAGS` - Regexp mask for the tag included in the deletion
  * `GITLAB_EXCLUDE_TAGS` - Regexp mask for the tag excluded from deletion
  * `GITLAB_REMOVE_UNUSED_TAGS=false` - false - inspect,  true - remove unused images
