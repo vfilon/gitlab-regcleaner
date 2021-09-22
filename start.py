@@ -47,10 +47,11 @@ timer = Timer()
 # Environment variables
 
 gitlab_api_v4_url = os.environ['CI_API_V4_URL']
-gitlab_token = os.environ['GIT_TOKEN']
 gitlab_project_id = int(os.environ['CI_PROJECT_ID'])
+gitlab_token = os.environ['GITLAB_TOKEN']
 gitlab_exclude_tags = os.getenv('GITLAB_EXCLUDE_TAGS', r'')  # ^\d+\.\d+\.\d+$
 gitlab_include_tags = os.getenv('GITLAB_INCLUDE_TAGS', r'')  # ^[a-f0-9]{8}$
+gitlab_remove_unused_tags = os.getenv("GITLAB_REMOVE_UNUSED_TAGS", 'False').lower() in ('true', '1', 't')
 
 kube_config = os.environ['KUBECONFIG']
 kube_namespace = os.environ['KUBE_NAMESPACE']
@@ -90,7 +91,7 @@ for tag in set(gitlab_image_base.keys()).difference(kube_image_base):
 logging.info(f'Got {len(del_candidates_tags)} candidates to delete:')
 logging.info('\n'.join(del_candidates_tags))
 
-if remove_unused_tags:
+if gitlab_remove_unused_tags:
     logging.info(f'Deleting images')
     del_output = del_registry_tags(del_candidates, headers, 5)
     show_del_stat(del_output)
