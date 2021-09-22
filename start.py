@@ -57,7 +57,6 @@ kube_config = os.environ['KUBECONFIG']
 kube_namespace = os.environ['KUBE_NAMESPACE']
 kube_history = int(os.getenv('KUBE_HISTORY', '5'))
 
-remove_unused_tags = os.getenv("REMOVE_UNUSED_TAGS", 'False').lower() in ('true', '1', 't')
 #
 headers = {"PRIVATE-TOKEN": gitlab_token}
 
